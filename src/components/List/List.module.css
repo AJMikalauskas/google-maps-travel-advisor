@@ -1,0 +1,9 @@
+.container {
+    padding: 25px
+}
+
+.formControl {
+    margin: 10; 
+    min-width: 120;
+    margin-bottom: 30;
+}
