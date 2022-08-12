@@ -5,7 +5,11 @@ import PhoneIcon from '@mui/icons-material/Phone';
 
 // ! FIX UI ON MUI SELECT AND THESE
 const PlaceDetails = (props) => {
-  const { place } = props;
+  const { place, placeRef, selected } = props;
+  if(selected) {
+    //  get current ref of the place details, scroll down to it; Optional chaining and check ref and current exist before accessing them.
+    placeRef?.current?.scrollIntoView({behavior:"smooth", block:"start"})
+  }
   return (
     <Card elevation={8}>
       {/*  if image exists call and show it, else show base image; --> we could also do this ternary check on every property 

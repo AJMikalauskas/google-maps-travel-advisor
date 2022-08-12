@@ -16,7 +16,7 @@ const Header = () => {
     return (
         <AppBar position="static"> 
             <Toolbar>
-                <Typography className={styles.title}> 
+                <Typography sx={{ fontSize: 24 }}> 
                     Travel Advisor 
                 </Typography>
             </Toolbar>
