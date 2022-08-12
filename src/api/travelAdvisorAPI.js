@@ -18,16 +18,18 @@ export const getPlacesData = async (type, sw, ne) => {
           tr_longitude: "109.149359",
         },
         headers: {
-          "X-RapidAPI-Key": "3fb132f0a4msh01884afa74b3096p1653c7jsnd2db1dce89cf",
+          "X-RapidAPI-Key": process.env.REACT_APP_TRAVEL_ADVISOR_RAPID_API_KEY,
           "X-RapidAPI-Host": "travel-advisor.p.rapidapi.com",
         },
       };
     const response = await axios.request(options);
-    // Use this console log for testing --> can return response.data.data which includes restauraunts 
+    // Use this console log for testing --> can return response.data.data which includes restaurants 
         // near the current latitudes and longitudes provided
     console.log(response);
-    // restauraunts, hotels, and attractions will give 10 values each time they're called
+    // restaurants, hotels, and attractions will give 10 values each time they're called --> return so it can be hanlded by .then() in App.js
     console.log(response.data.data);
+
+    return response.data.data;
   } catch (err) {
     console.log(err);
   }

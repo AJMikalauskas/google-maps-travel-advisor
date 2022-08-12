@@ -17,11 +17,23 @@ function App() {
     // in the api folder in src. --> when changing API keys and variables in .env, need to restart app fully to see effects.
   let numOfTimesPageLoads = 0;
 
-  // How to have this stop from running on loading of page, only run after.
+  // How to have this stop from running on loading of page, only run after, may have to create my own hook sort of???
    useEffect(() => {
+    // Loading state --> Progess Bar if loading, else show content in List.js
+    setIsLoading(true);
     // pass in type to see what we get back from the API which includes restauraunts, hotels, and attractions; type param in getPlacesData
-      // change request based on type
-    getPlacesData(type);
+      // change request based on type handled both in the API file and here via .then()?
+    getPlacesData(type).then((data) => {
+      // filter places to only if they have a name and if there reviews is greater than 0, 
+        // need for setPlaces useState setting function to be a dependency
+        try {
+      setPlaces(data.filter((place) => place.name && place.num_reviews > 0))
+        } catch(err) {
+          //console.log(err) => for fail cases or onload case, will hopefully refactor to create something smilar to useEffect
+      setIsLoading(false);
+        }
+        setIsLoading(false);
+    });
   }, [type]);
 
   
